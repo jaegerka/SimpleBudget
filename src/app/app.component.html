@@ -1,62 +1,51 @@
-<div *ngIf="card" class="card" style="margin: 10% 10%; background-color: #045de9;
-  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);">
+<div *ngIf="card" class="initial-screen">
   <div style="text-align: center">
     <h1>Simple Budget</h1>
     <p class="lead">
       Your budget, made simpler 
     </p>
-    <button class="button" (click)="openApplication()">Start Now</button>
+    <button class="button start-btn" (click)="openApplication()">Start Now</button>
   </div>
 </div>
 
-<div *ngIf="!card && expenses" style="text-align: center">
+<div *ngIf="!card && expenses" class="annual-income-wrapper">
   
-  <div class="card" style="text-align: center; padding: 4%; background-color: #045de9;
-  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-  ">
-  <h1>Fill in your numbers below</h1>
+  <div class="annual-income card">
+    <h1 class="annual-income-title">Fill in your numbers below</h1>
     <h4>
       Annual Income:
     </h4>
     <input id="annualincome" #annualincome>
-    <br>
-       <h4>
-        Monthly Expenses: 
-       </h4>
-       <button style="width: 80%; margin:auto" (click)="calculateexpenses()">Calculate Expenses</button>
-       <br>
+    <br/>
+    <h4>
+      Monthly Expenses:
+    </h4>
+    <button class="monthly-expense-btn" (click)="calculateexpenses()">Calculate Expenses</button>
     <input id="monthlyexpenses" #monthlyexpenses>
-    
-<br>
-    <button class="button" (click)="calculate(annualincome.value, monthlyexpenses.value)" style="width: 60%; margin: auto">Calculate</button>
-<br>
+    <div class="between"></div>
+    <button class="calculate-btn" (click)="calculate(annualincome.value, monthlyexpenses.value)">Calculate</button>
+    <div class="available-money card">
+      <h4 class="available-money-title">Available Money</h4>
+      <p>
+        {{availablemoneyyearly | currency}}/year
+      </p>
+      <p>
+        {{availablemoneymonthly | currency }}/month
+      </p>
+      <p> 
+        {{availablemoneyweekly | currency}}/week
+      </p>
+      <p>
+        {{availablemoneydaily | currency}}/day
+      </p>
 
-<br>
-
-  <div class="card">
-    <h4>Available Money</h4>
-    <p>
-      {{availablemoneyyearly | currency}}/year
-    </p>
-    <p>
-      {{availablemoneymonthly | currency }}/month
-    </p>
-    <p> 
-      {{availablemoneyweekly | currency}}/week
-    </p>
-    <p>
-      {{availablemoneydaily | currency}}/day
-    </p>
-
-    <small>Screenshot this page to save for your records</small>
-  </div>
-
+      <div class="screenshot">Screenshot this page to save for your records</div>
+    </div>
   </div>
 </div>
 
-<div *ngIf="!expenses">
-  <div class="card" style="background-color: #045de9;
-  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);">
+<div *ngIf="!expenses" class="expenses-wrapper">
+  <div class="expenses card">
     <div style="text-align: center">
       <h1>Calculate Your Expenses</h1>
       <p class="lead">
@@ -113,18 +102,14 @@
       <input id="other" #other>
 
       <br> <br>
-      <div class="card" style="width: 80%; padding: 2%; text-align: center; margin: auto">
+      <div class="card" style="width: 80%; padding: 20px; text-align: center; margin: auto">
         <h4>Total Monthly Expenses: <br> {{totalexpenses | currency}}</h4>
         <small>Remember this number and input after close</small>
       </div>
     </form>
-
-    <br><br>
-
-    <button class="button" (click)="saveexpenses(rent.value, carpayment.value, carinsurance.value, other.value)" style="width:20%; margin: auto;">Calculate</button>
+    <button class="button calc-btn" (click)="saveexpenses(rent.value, carpayment.value, carinsurance.value, other.value)">Calculate</button>
     <br>
-    <button class="button" (click)="closeexpenses()" style="width:80%; margin: auto;">Close</button>
-    <br><br>
+    <button class="button close-btn" (click)="closeexpenses()" style="width:80%; margin: auto;">Close</button>
   </div>
 
 </div>
