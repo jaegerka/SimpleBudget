@@ -1,0 +1,130 @@
+<div *ngIf="card" class="card" style="margin: 10% 10%; background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);">
+  <div style="text-align: center">
+    <h1>Simple Budget</h1>
+    <p class="lead">
+      Your budget, made simpler 
+    </p>
+    <button class="button" (click)="openApplication()">Start Now</button>
+  </div>
+</div>
+
+<div *ngIf="!card && expenses" style="text-align: center">
+  
+  <div class="card" style="text-align: center; padding: 4%; background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+  ">
+  <h1>Fill in your numbers below</h1>
+    <h4>
+      Annual Income:
+    </h4>
+    <input id="annualincome" #annualincome>
+    <br>
+       <h4>
+        Monthly Expenses: 
+       </h4>
+       <button style="width: 80%; margin:auto" (click)="calculateexpenses()">Calculate Expenses</button>
+       <br>
+    <input id="monthlyexpenses" #monthlyexpenses>
+    
+<br>
+    <button class="button" (click)="calculate(annualincome.value, monthlyexpenses.value)" style="width: 60%; margin: auto">Calculate</button>
+<br>
+
+<br>
+
+  <div class="card">
+    <h4>Available Money</h4>
+    <p>
+      {{availablemoneyyearly | currency}}/year
+    </p>
+    <p>
+      {{availablemoneymonthly | currency }}/month
+    </p>
+    <p> 
+      {{availablemoneyweekly | currency}}/week
+    </p>
+    <p>
+      {{availablemoneydaily | currency}}/day
+    </p>
+
+    <small>Screenshot this page to save for your records</small>
+  </div>
+
+  </div>
+</div>
+
+<div *ngIf="!expenses">
+  <div class="card" style="background-color: #045de9;
+  background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);">
+    <div style="text-align: center">
+      <h1>Calculate Your Expenses</h1>
+      <p class="lead">
+       Input your monthly expenses below.
+      </p>
+    </div>
+
+    <form style="width:50%; margin: auto; text-align: center;">
+
+      <small>
+        Rent
+      </small>
+      <br>
+      <input id="rent" #rent>
+
+      <br>
+
+      <small>
+        Car Payment
+      </small>
+      <br>
+      <input id="carpayment" #carpayment>
+
+      <br>
+
+      <small>
+        Car Insurance
+      </small>
+      <br>
+      <input id="carinsurance" #carinsurance>
+
+      <br>
+
+      <small>
+        Cell Phone Bill
+      </small>
+      <br>
+      <input id="cellphone" #cellphone>
+
+      <br>
+      
+      <small>
+        Groceries/Eating Out
+      </small>
+      <br>
+      <input id="food" #food>
+
+      <br>
+
+      <small>
+        Other
+      </small>
+      <br>
+      <input id="other" #other>
+
+      <br> <br>
+      <div class="card" style="width: 80%; padding: 2%; text-align: center; margin: auto">
+        <h4>Total Monthly Expenses: <br> {{totalexpenses | currency}}</h4>
+        <small>Remember this number and input after close</small>
+      </div>
+    </form>
+
+    <br><br>
+
+    <button class="button" (click)="saveexpenses(rent.value, carpayment.value, carinsurance.value, other.value)" style="width:20%; margin: auto;">Calculate</button>
+    <br>
+    <button class="button" (click)="closeexpenses()" style="width:80%; margin: auto;">Close</button>
+    <br><br>
+  </div>
+
+</div>
